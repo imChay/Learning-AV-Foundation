@@ -198,6 +198,11 @@
 				CLASSPREFIX = TH;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "TapHarmonic, LLC";
+				TargetAttributes = {
+					074740B218A1436D0060A1F6 = {
+						DevelopmentTeam = U5N2H98V56;
+					};
+				};
 			};
 			buildConfigurationList = 074740AE18A1436D0060A1F6 /* Build configuration list for PBXProject "FaceKamera" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -371,10 +376,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = U5N2H98V56;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceKamera/FaceKamera-Prefix.pch";
 				INFOPLIST_FILE = "FaceKamera/FaceKamera-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.FaceKamera1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -385,10 +391,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = U5N2H98V56;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceKamera/FaceKamera-Prefix.pch";
 				INFOPLIST_FILE = "FaceKamera/FaceKamera-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.FaceKamera1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
