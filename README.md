@@ -22,6 +22,10 @@ Kamera_Final - 相机
 
 # Chapter 7
 
+CubeKamera_Final
+
+<img src="https://github.com/imChay/Learning-AV-Foundation/blob/master/Chapter%2007/CubeKamera_Final/IMG_0215.PNG" width="250">
+
 CodeKamera_Final - 二维码扫描识别
 
 SlowKamera_Final - 高帧率、视频变速
@@ -37,3 +41,5 @@ THWaveformView_Final - 声波 View
 # Chapter 9 - 12
 
 FifteenSeconds_Final - 运行在 iPad 上的视频编辑工具
+
+<img src="https://github.com/imChay/Learning-AV-Foundation/blob/master/Chapter%2009/Snip20181029_9.png" width="500">
