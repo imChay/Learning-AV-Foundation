@@ -35,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5CFB89C2218700EA001B9C4E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C402A680182AB0EA00CC7CB1 /* Kamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C402A683182AB0EA00CC7CB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C402A685182AB0EA00CC7CB1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -151,6 +152,7 @@
 				C402A68C182AB0EA00CC7CB1 /* InfoPlist.strings */,
 				C402A68F182AB0EA00CC7CB1 /* main.m */,
 				C402A691182AB0EA00CC7CB1 /* Kamera-Prefix.pch */,
+				5CFB89C2218700EA001B9C4E /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

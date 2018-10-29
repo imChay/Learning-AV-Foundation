@@ -61,8 +61,8 @@
                                              selector:@selector(updateThumbnail:)
                                                  name:THThumbnailCreatedNotification
                                                object:nil];
-    self.cameraMode = THCameraModeVideo;
-    self.cameraController = [[THCameraController alloc] init];
+    self.cameraMode = THCameraModeVideo; // 拍摄 or 拍照
+    self.cameraController = [[THCameraController alloc] init]; // 实际上是一个 Manager
     
     NSError *error;
     if ([self.cameraController setupSession:&error]) {

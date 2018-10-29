@@ -83,6 +83,7 @@
     [self addSubview:_exposureBox];
 }
 
+// 单击聚焦
 - (void)handleSingleTap:(UIGestureRecognizer *)recognizer {
     CGPoint point = [recognizer locationInView:self];
     [self runBoxAnimationOnView:self.focusBox point:point];
@@ -91,12 +92,14 @@
     }
 }
 
+// UI上的坐标点 转换为 AVCaptureDevice的坐标空间中的一个点
 - (CGPoint)captureDevicePointForPoint:(CGPoint)point {                      // 3
     AVCaptureVideoPreviewLayer *layer =
         (AVCaptureVideoPreviewLayer *)self.layer;
     return [layer captureDevicePointOfInterestForPoint:point];
 }
 
+// 双击曝光
 - (void)handleDoubleTap:(UIGestureRecognizer *)recognizer {
     CGPoint point = [recognizer locationInView:self];
     [self runBoxAnimationOnView:self.exposureBox point:point];
@@ -105,6 +108,7 @@
     }
 }
 
+// 双指双击
 - (void)handleDoubleDoubleTap:(UIGestureRecognizer *)recognizer {
     [self runResetAnimation];
     if (self.delegate) {
@@ -179,6 +183,7 @@
     return view;
 }
 
+// 设置 view 的 layer 的类型
 + (Class)layerClass {
 	return [AVCaptureVideoPreviewLayer class];
 }

@@ -116,6 +116,7 @@ NSString *const THThumbnailCreatedNotification = @"THThumbnailCreated";
 
 #pragma mark - Device Configuration
 
+// 根据摄像头的 position 获取对应的摄像头（前置 or 后置）
 - (AVCaptureDevice *)cameraWithPosition:(AVCaptureDevicePosition)position { // 1
 	NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
 	for (AVCaptureDevice *device in devices) {                              // 2
@@ -126,6 +127,7 @@ NSString *const THThumbnailCreatedNotification = @"THThumbnailCreated";
 	return nil;
 }
 
+// 获取当前处于激活状态的摄像头
 - (AVCaptureDevice *)activeCamera {                                         // 3
     return self.activeVideoInput.device;
 }
@@ -335,6 +337,7 @@ static const NSString *THCameraAdjustingExposureContext;
     }
 }
 
+// 重置聚焦和曝光
 - (void)resetFocusAndExposureModes {
 
     AVCaptureDevice *device = [self activeCamera];
@@ -353,6 +356,7 @@ static const NSString *THCameraAdjustingExposureContext;
     CGPoint centerPoint = CGPointMake(0.5f, 0.5f);                          // 3
 
     NSError *error;
+    // 重置曝光和聚焦模式之前需要先锁定
     if ([device lockForConfiguration:&error]) {
 
         if (canResetFocus) {                                                // 4
@@ -364,7 +368,7 @@ static const NSString *THCameraAdjustingExposureContext;
             device.exposureMode = exposureMode;
             device.exposurePointOfInterest = centerPoint;
         }
-        
+        // 解锁
         [device unlockForConfiguration];
         
     } else {
@@ -375,6 +379,7 @@ static const NSString *THCameraAdjustingExposureContext;
 
 #pragma mark - Image Capture Methods
 
+/// 拍照
 - (void)captureStillImage {
 
     AVCaptureConnection *connection =                                   
@@ -403,6 +408,7 @@ static const NSString *THCameraAdjustingExposureContext;
                                                   completionHandler:handler];
 }
 
+/// 将图片写入到相册中
 - (void)writeImageToAssetsLibrary:(UIImage *)image {
 
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];              // 2
@@ -419,6 +425,7 @@ static const NSString *THCameraAdjustingExposureContext;
                           }];
 }
 
+/// 通过通知将生成的略缩图发送出去
 - (void)postThumbnailNotifification:(UIImage *)image {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -439,11 +446,11 @@ static const NSString *THCameraAdjustingExposureContext;
 		AVCaptureConnection *videoConnection =                              // 2
             [self.movieOutput connectionWithMediaType:AVMediaTypeVideo];
 
-		if ([videoConnection isVideoOrientationSupported]) {                // 3
+		if ([videoConnection isVideoOrientationSupported]) {                // 3 录制视频的方向
 			videoConnection.videoOrientation = self.currentVideoOrientation;
 		}
 
-		if ([videoConnection isVideoStabilizationSupported]) {              // 4
+		if ([videoConnection isVideoStabilizationSupported]) {              // 4  是否支持视频稳定，会提升录制视频质量
             
             videoConnection.preferredVideoStabilizationMode = AVCaptureVideoStabilizationModeAuto;
             
@@ -453,7 +460,7 @@ static const NSString *THCameraAdjustingExposureContext;
 
         AVCaptureDevice *device = [self activeCamera];
 
-        if (device.isSmoothAutoFocusSupported) {                            // 5
+        if (device.isSmoothAutoFocusSupported) {                            // 5  平滑对焦
             NSError *error;
             if ([device lockForConfiguration:&error]) {
                 device.smoothAutoFocusEnabled = NO;
@@ -509,6 +516,7 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
     self.outputURL = nil;
 }
 
+/// 根据视频 URL 将视频写入到相册中
 - (void)writeVideoToAssetsLibrary:(NSURL *)videoURL {
 
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];              // 2
@@ -530,6 +538,7 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
     }
 }
 
+/// 根据视频的 URL 生成视频的略缩图
 - (void)generateThumbnailForVideoAtURL:(NSURL *)videoURL {
 
     dispatch_async([self globalQueue], ^{
@@ -539,9 +548,9 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
         AVAssetImageGenerator *imageGenerator =                             // 5
             [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
         imageGenerator.maximumSize = CGSizeMake(100.0f, 0.0f);
-        imageGenerator.appliesPreferredTrackTransform = YES;
+        imageGenerator.appliesPreferredTrackTransform = YES;                // ???
 
-        CGImageRef imageRef = [imageGenerator copyCGImageAtTime:kCMTimeZero // 6
+        CGImageRef imageRef = [imageGenerator copyCGImageAtTime:kCMTimeZero // 6  截首帧
                                                      actualTime:NULL
                                                           error:nil];
         UIImage *image = [UIImage imageWithCGImage:imageRef];
@@ -555,6 +564,7 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
 
 #pragma mark - Recoding Destination URL
 
+/// 根据手机的方向，设置录制的的方向
 - (AVCaptureVideoOrientation)currentVideoOrientation {
 
     AVCaptureVideoOrientation orientation;
