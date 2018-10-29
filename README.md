@@ -1,12 +1,20 @@
-# Learning AV Foundation
-
-![Book Cover](https://raw.github.com/tapharmonic/Learning-AV-Foundation/master/book.jpg)
-
-Sample code for Bob McCune's Learning AV Foundation book. The book is now available from from  <a href="http://www.informit.com/store/learning-av-foundation-a-hands-on-guide-to-mastering-9780321961808">InformIT</a>. Use MCCUNE1808 for a 30% discount!
-
-You can find a more detailed overview of the book contents at Bob McCune's website: <a href="http://www.bobmccune.com/2014/08/25/learning-av-foundation-is-now-available-for-pre-order/">http://bobmccune.com/</a>.
-
-## What about Swift?
-One of the biggest questions I get about the book is when will there be a Swift version? Although a second edition of the book is planned, no specific date has yet been set for its release. However, I have started porting the book's sample code to Swift 4.2. If you want to follow along, the repo can be found here:
-
-https://github.com/tapharmonic/Learning-AV-Foundation-Swift
+# Chapter 2
+AudioLooper_Final
+VoiceMemo_Final - 语音备忘录
+# Chapter 3
+MetaManager_Final - Mac 上可以查看音视频文件元数据的工具
+# Chapter 4
+VideoPlayer_Final - 视频播放器
+# Chapter 5
+KitTime Player_Final - Mac 视频播放器
+# Chapter 6
+Kamera_Final - 相机
+# Chapter 7
+CodeKamera_Final - 二维码扫描识别
+SlowKamera_Final - 高帧率、视频变速
+FaceKamera_Final - 人脸识别
+# Chapter 8
+KameraWriter_Final - 滤镜
+THWaveformView_Final - 声波 View
+# Chapter 9 - 12
+FifteenSeconds_Final - 运行在 iPad 上的视频编辑工具
