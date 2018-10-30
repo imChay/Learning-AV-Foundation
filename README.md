@@ -32,6 +32,10 @@ SlowKamera_Final - 高帧率、视频变速
 
 FaceKamera_Final - 人脸识别
 
+ZoomKamera_Final - 录制缩放
+
+CubeKamera_Final - AVFoundation 和 OpenGL ES 结合，将捕捉的视频映射到一个旋转的方块上
+
 # Chapter 8
 
 KameraWriter_Final - 滤镜
