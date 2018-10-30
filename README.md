@@ -30,7 +30,7 @@ FaceKamera_Final - 人脸识别
 
 ZoomKamera_Final - 录制缩放
 
-CubeKamera_Final - AVFoundation 和 OpenGL ES 结合，将捕捉的视频映射到一个旋转的方块上
+CubeKamera_Final - AVFoundation 和 OpenGL ES 结合，将捕捉的视频映射到一个旋转方块的 OpenGL ES 贴图
 
 <img src="https://github.com/imChay/Learning-AV-Foundation/blob/master/Chapter%2007/CubeKamera_Final/IMG_0215.PNG" width="250">
 
