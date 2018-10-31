@@ -71,6 +71,7 @@
 //        NSLog(@"Face detected with ID: %li", (long)face.faceID);
 //        NSLog(@"Face bounds: %@", NSStringFromCGRect(face.bounds));
         
+//        Core Image只是简单的图像识别， 并不能对流中的人脸进行识别
 //        NSLog(@"左眼是否闭合:%@",[face valueForKeyPath:@"_internal.hasLeftEyeClosedConfidence"]);
 //        NSLog(@"左眼是否闭合可信度:%@",[face valueForKeyPath:@"_internal.leftEyeClosedConfidence"]);
 //        NSLog(@"右眼是否闭合:%@",[face valueForKeyPath:@"_internal.hasRightEyeClosedConfidence"]);
