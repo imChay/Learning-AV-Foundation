@@ -38,6 +38,7 @@
 		074740C918A1436D0060A1F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		074740CE18A1436D0060A1F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		074740D518A1436D0060A1F6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5CFB89C321897CFB001B9C4E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C4B6D01418A355DE00DCC62D /* THPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPreviewView.h; sourceTree = "<group>"; };
 		C4B6D01518A355DE00DCC62D /* THPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPreviewView.m; sourceTree = "<group>"; };
 		C4B6D01618A355DE00DCC62D /* THCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCameraView.h; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 				074740BF18A1436D0060A1F6 /* InfoPlist.strings */,
 				074740C218A1436D0060A1F6 /* main.m */,
 				074740C418A1436D0060A1F6 /* FaceKamera-Prefix.pch */,
+				5CFB89C321897CFB001B9C4E /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

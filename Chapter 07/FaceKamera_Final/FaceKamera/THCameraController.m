@@ -27,7 +27,9 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface THCameraController () <AVCaptureMetadataOutputObjectsDelegate>   // 1
+
 @property (strong, nonatomic) AVCaptureMetadataOutput *metadataOutput;
+
 @end
 
 @implementation THCameraController
@@ -60,9 +62,8 @@
     }
 }
 
-- (void)captureOutput:(AVCaptureOutput *)captureOutput
-didOutputMetadataObjects:(NSArray *)metadataObjects
-       fromConnection:(AVCaptureConnection *)connection {
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects
+                                                                 fromConnection:(AVCaptureConnection *)connection {
 
     for (AVMetadataFaceObject *face in metadataObjects) {                   // 2
         NSLog(@"Face detected with ID: %li", (long)face.faceID);

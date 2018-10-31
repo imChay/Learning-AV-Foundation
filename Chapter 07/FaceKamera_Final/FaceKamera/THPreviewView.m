@@ -27,7 +27,7 @@
 
 @interface THPreviewView ()                                                 // 1
 @property (strong, nonatomic) CALayer *overlayLayer;
-@property (strong, nonatomic) NSMutableDictionary *faceLayers;
+@property (strong, nonatomic) NSMutableDictionary *faceLayers;              // 人脸检测结果的数据（可以同时识别多个人脸数据）
 @property (nonatomic, readonly) AVCaptureVideoPreviewLayer *previewLayer;
 @end
 
@@ -59,7 +59,7 @@
 
     self.overlayLayer = [CALayer layer];                                    // 2
     self.overlayLayer.frame = self.bounds;
-    self.overlayLayer.sublayerTransform = CATransform3DMakePerspective(1000);
+    self.overlayLayer.sublayerTransform = CATransform3DMakePerspective(1000); //
     [self.previewLayer addSublayer:self.overlayLayer];
 }
 
@@ -75,15 +75,17 @@
     return (AVCaptureVideoPreviewLayer *)self.layer;
 }
 
+#pragma mark - THFaceDetectionDelegate
+
 - (void)didDetectFaces:(NSArray *)faces {
 
     NSArray *transformedFaces = [self transformedFacesFromFaces:faces];
 
-    NSMutableArray *lostFaces = [self.faceLayers.allKeys mutableCopy];      // 1
+    NSMutableArray *lostFaces = [self.faceLayers.allKeys mutableCopy];      // 1  用于记录哪些人脸移除了视图
 
     for (AVMetadataFaceObject *face in transformedFaces) {
 
-        NSNumber *faceID = @(face.faceID);                                  // 2
+        NSNumber *faceID = @(face.faceID);                                  // 2  哪些人脸移除后，又检测到了，从移除列表中移除
 		[lostFaces removeObject:faceID];
 
         CALayer *layer = [self.faceLayers objectForKey:faceID];             // 3
@@ -108,7 +110,7 @@
         }
     }
 
-    for (NSNumber *faceID in lostFaces) {                                   // 6
+    for (NSNumber *faceID in lostFaces) {                                   // 6 移除所有在移除列表中的图层
         CALayer *layer = [self.faceLayers objectForKey:faceID];
         [layer removeFromSuperlayer];
         [self.faceLayers removeObjectForKey:faceID];
@@ -116,6 +118,7 @@
 
 }
 
+/// 人脸对象 设备坐标 --> UI 坐标
 - (NSArray *)transformedFacesFromFaces:(NSArray *)faces {                   // 2
     NSMutableArray *transformedFaces = [NSMutableArray array];
     for (AVMetadataObject *face in faces) {
