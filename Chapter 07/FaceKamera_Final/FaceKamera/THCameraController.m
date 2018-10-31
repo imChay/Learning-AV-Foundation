@@ -62,12 +62,23 @@
     }
 }
 
+#pragma mark - THFaceDetectionDelegate
+
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects
                                                                  fromConnection:(AVCaptureConnection *)connection {
 
     for (AVMetadataFaceObject *face in metadataObjects) {                   // 2
-        NSLog(@"Face detected with ID: %li", (long)face.faceID);
-        NSLog(@"Face bounds: %@", NSStringFromCGRect(face.bounds));
+//        NSLog(@"Face detected with ID: %li", (long)face.faceID);
+//        NSLog(@"Face bounds: %@", NSStringFromCGRect(face.bounds));
+        
+//        NSLog(@"左眼是否闭合:%@",[face valueForKeyPath:@"_internal.hasLeftEyeClosedConfidence"]);
+//        NSLog(@"左眼是否闭合可信度:%@",[face valueForKeyPath:@"_internal.leftEyeClosedConfidence"]);
+//        NSLog(@"右眼是否闭合:%@",[face valueForKeyPath:@"_internal.hasRightEyeClosedConfidence"]);
+//        NSLog(@"右眼是否闭合可信度:%@",[face valueForKeyPath:@"_internal.rightEyeClosedConfidence"]);
+//        NSLog(@"是否微笑:%@",[face valueForKeyPath:@"_internal.hasSmileConfidence"]);
+//        NSLog(@"是否微笑可信度:%@",[face valueForKeyPath:@"_internal.smileConfidence"]);
+//        NSLog(@"左眼bounds:%@",[face valueForKeyPath:@"_internal.hasLeftEyeBounds"]);
+//        NSLog(@"右眼bounds:%@",[face valueForKeyPath:@"_internal.hasLeftEyeBounds"]);
     }
 
     [self.faceDetectionDelegate didDetectFaces:metadataObjects];            // 3
