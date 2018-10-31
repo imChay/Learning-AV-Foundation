@@ -22,13 +22,13 @@ Kamera_Final - 相机
 
 # Chapter 7
 
+ZoomKamera_Final - 录制缩放
+
 CodeKamera_Final - 二维码扫描识别
 
 SlowKamera_Final - 高帧率、视频变速
 
 FaceKamera_Final - 人脸识别
-
-ZoomKamera_Final - 录制缩放
 
 CubeKamera_Final - AVFoundation 和 OpenGL ES 结合，将捕捉的视频映射到一个旋转方块的 OpenGL ES 贴图
 

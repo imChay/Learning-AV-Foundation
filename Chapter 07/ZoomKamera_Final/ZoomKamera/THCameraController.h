@@ -37,6 +37,7 @@
 - (BOOL)cameraSupportsZoom;                                                 // 2
 
 - (void)setZoomValue:(CGFloat)zoomValue;                                    // 3
+
 - (void)rampZoomToValue:(CGFloat)zoomValue;
 - (void)cancelZoom;
 

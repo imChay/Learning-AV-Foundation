@@ -55,11 +55,15 @@ static const NSString *THRampingVideoZoomFactorContext;
 						change:(NSDictionary *)change
 					   context:(void *)context {
 
+    //
 	if (context == &THRampingVideoZoomContext) {
-        [self updateZoomingDelegate];                                       // 4
+        [self updateZoomingDelegate];                                        // 4  点击 + / - ，开始结束调用这个方法
+        NSLog(@"THRampingVideoZoomContext");
+    //
 	} else if (context == &THRampingVideoZoomFactorContext) {
 		if (self.activeCamera.isRampingVideoZoom) {
-			[self updateZoomingDelegate];                                   // 5
+			[self updateZoomingDelegate];
+            NSLog(@"THRampingVideoZoomFactorContext");                       // 5 除去开始 结束，改变中一直调用这个方法
 		}
 	} else {
 		[super observeValueForKeyPath:keyPath
@@ -70,6 +74,7 @@ static const NSString *THRampingVideoZoomFactorContext;
 }
 
 - (void)updateZoomingDelegate {
+    // 用于控制设备的缩放等级 1.0 ~ 最大值（由设备的 activeFormat 决定）
 	CGFloat curZoomFactor = self.activeCamera.videoZoomFactor;
 	CGFloat maxZoomFactor = [self maxZoomFactor];
 	CGFloat value = log(curZoomFactor) / log(maxZoomFactor);                // 6
@@ -81,7 +86,7 @@ static const NSString *THRampingVideoZoomFactorContext;
 }
 
 - (CGFloat)maxZoomFactor {
-	return MIN(self.activeCamera.activeFormat.videoMaxZoomFactor, 4.0f);    // 2
+	return MIN(self.activeCamera.activeFormat.videoMaxZoomFactor, 4.0f);    // 2  确定最大的缩放因子
 }
 
 - (void)setZoomValue:(CGFloat)zoomValue {                                   // 3
@@ -91,7 +96,7 @@ static const NSString *THRampingVideoZoomFactorContext;
         if ([self.activeCamera lockForConfiguration:&error]) {              // 4
 
             // Provide linear feel to zoom slider
-			CGFloat zoomFactor = pow([self maxZoomFactor], zoomValue);      // 5
+			CGFloat zoomFactor = pow([self maxZoomFactor], zoomValue);      // 5 缩放范围是1x ~ 4x 是指数增长的，转化成线性的
             self.activeCamera.videoZoomFactor = zoomFactor;
 
             [self.activeCamera unlockForConfiguration];                     // 6

@@ -57,6 +57,7 @@
     NSError *error;
     if ([self.cameraController setupSession:&error]) {
         self.previewView.session = self.cameraController.session;
+        //
         [self.cameraController.session addObserver:self
                                                forKeyPath:@"running"
                                                   options:NSKeyValueObservingOptionNew
@@ -69,6 +70,7 @@
 	self.cameraController.zoomingDelegate = self;
 }
 
+//
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -81,9 +83,11 @@
             [self.cameraController.session removeObserver:self
                                                       forKeyPath:@"running"];
         });
-
+        NSLog(@"[self.cameraController.session removeObserver:self ...");
     } else {
+        // 这里之所以调用super，因为他的父类也用了KVO，为了不覆盖
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        NSLog(@"[super observeValueForKeyPath ...]");
     }
 }
 
@@ -122,20 +126,23 @@
     return YES;
 }
 
+// 拖动缩放
 - (IBAction)zoomToValue:(id)sender {
 	[self.cameraController setZoomValue:[(UISlider *)sender value]];
 }
 
+// 点击放大
 - (IBAction)rampZoomToValue:(id)sender {
     CGFloat zoomValue = [(UIButton *)sender tag];
 	[self.cameraController rampZoomToValue:zoomValue];
 }
 
+// 点击缩小
 - (IBAction)cancelZoomRamp:(id)sender {
     [self.cameraController cancelZoom];
 }
 
-// Zooming Delegate Method
+#pragma mark - Zooming Delegate Method  点击 + / - 的回调方法
 - (void)rampedZoomToValue:(CGFloat)value {
     self.zoomSlider.value = value;
 }
